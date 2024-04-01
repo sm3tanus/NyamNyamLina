@@ -1,0 +1,16 @@
+﻿<Application x:Class="NyamNyamLina.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:NyamNyamLina"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Style x:Key="CustomFont">
+                <Setter Property="TextElement.FontFamily"
+            Value="/Fonts/#Comfortaa">
+
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

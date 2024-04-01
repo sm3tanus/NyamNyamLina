@@ -1,0 +1,201 @@
+﻿<Page x:Class="NyamNyamLina.Pages.MainMenu"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NyamNyamLina.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="MainMenu">
+    <Grid>
+        <Grid.RowDefinitions>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+    </Grid.ColumnDefinitions>
+
+
+        <Frame Name="MainMenuFrame" Grid.Column="2" Background="#fed7c1" Grid.ColumnSpan="4" Grid.RowSpan="7"></Frame>
+
+    <!--Прямоугольники-->
+
+    <Rectangle Fill="#fdb249" Width="645" Height="1080" HorizontalAlignment="Left" Grid.RowSpan="7" Grid.ColumnSpan="2"/>
+    <Rectangle Fill="#fdb249" Width="645" Height="145" HorizontalAlignment="Left" Grid.RowSpan="7" Grid.ColumnSpan="2" VerticalAlignment="Top"/>
+
+    <!--Профиль-->
+
+    <Button
+        Width="640"
+        Height="160"
+        FontSize="30"
+        HorizontalContentAlignment="Left"
+       
+        Name="ProfileBt"
+            BorderBrush="Transparent"
+        Background="Transparent"
+        HorizontalAlignment="Left"
+        Grid.ColumnSpan="2"  >
+        <Button.Content>
+            <StackPanel Orientation="Horizontal" Width="610">
+                <Grid Width="610">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="500"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                  
+
+                    <TextBlock FontSize="55" 
+                                   Style="{StaticResource CustomFont}"
+                                   Margin="140 0 0 0"
+                                   VerticalAlignment="Center"
+                                   Name="loginTb"></TextBlock>
+                </Grid>
+            </StackPanel>
+        </Button.Content>
+    </Button>
+
+    <Button
+            BorderBrush="Transparent"
+            Width="140"
+            Height="160"
+            Name="ExitBt"
+            Background="Transparent"
+            HorizontalAlignment="Right"
+            Margin="0 0 0 0"
+            Grid.Column="1"
+           >
+
+    </Button>
+
+
+    <!--Навигационные кнопки-->
+
+    <!--My Day-->
+    <Button
+        Width="640"
+        Height="150"
+        FontSize="30"
+        HorizontalContentAlignment="Left"
+        Background="Transparent"
+        BorderBrush="Transparent"
+        Name="DishesBt"
+         
+                HorizontalAlignment="Left"
+              Grid.Row="1"
+              Grid.ColumnSpan="2" Click="DishesBt_Click"  >
+        <Button.Content>
+            <StackPanel Orientation="Horizontal" Width="610">
+                <Grid Width="610">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+
+                    <TextBlock FontSize="40" Style="{StaticResource CustomFont}" Margin="100 0 0 0" VerticalAlignment="Center">Dishes</TextBlock>
+
+                    <TextBlock Name="DishesTb" FontSize="40" Grid.Column="1" Style="{StaticResource CustomFont}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 35 0"/>
+                </Grid>
+            </StackPanel>
+        </Button.Content>
+    </Button>
+
+
+    <!--Team Tasks-->
+    <Button
+        Width="640"
+        Height="150"
+        FontSize="30"
+        HorizontalContentAlignment="Left"
+        Name="IngredientsBt"
+        BorderBrush="Transparent"
+        Background="Transparent"
+        
+        HorizontalAlignment="Left"
+        Grid.Row="2"
+        Grid.ColumnSpan="2" >
+        <Button.Content>
+            <StackPanel Orientation="Horizontal" Width="610">
+                <Grid Width="610">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="500"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+
+                    <TextBlock FontSize="40" Style="{StaticResource CustomFont}" Margin="100 0 0 0" VerticalAlignment="Center">Ingredients</TextBlock>
+
+                    <TextBlock Style="{StaticResource CustomFont}" 
+                                   FontSize="40" 
+                                   Grid.Column="1" 
+                                   HorizontalAlignment="Right" 
+                                   VerticalAlignment="Center" 
+                                   Margin="0 0 35 0"
+                                   Name="CountTaskTb"/>
+                </Grid>
+            </StackPanel>
+        </Button.Content>
+    </Button>
+
+
+
+    <!--My groups-->
+    <Button
+        Width="640"
+        Height="150"
+        FontSize="30"
+        HorizontalContentAlignment="Left"
+        Background="Transparent"
+        HorizontalAlignment="Left"
+        Grid.Row="3"
+        Name="OrderBt"
+        BorderBrush="Transparent"
+        Grid.ColumnSpan="2">
+        <Button.Content>
+            <StackPanel Orientation="Horizontal" Width="610">
+                <Grid Width="610">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="500"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+
+                    <TextBlock FontSize="40" Style="{StaticResource CustomFont}" Margin="100 0 0 0" VerticalAlignment="Center">Orders</TextBlock>
+                </Grid>
+            </StackPanel>
+        </Button.Content>
+    </Button>
+
+
+
+    </Grid>
+</Page>
