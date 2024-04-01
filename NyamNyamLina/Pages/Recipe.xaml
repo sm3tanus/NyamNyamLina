@@ -1,4 +1,4 @@
-﻿<Page x:Class="NyamNyamLina.Pages.ListofDishes"
+﻿<Page x:Class="NyamNyamLina.Pages.Recipe"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:NyamNyamLina.Pages"
       mc:Ignorable="d" 
        d:DesignHeight="1080" d:DesignWidth="1280"
-      Title="ListofDishes">
+      Title="Recipe">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -26,69 +26,69 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.ColumnSpan="2"
-                   FontSize="76"
+        <StackPanel Grid.ColumnSpan="5"
                    VerticalAlignment="Center"
-                   HorizontalAlignment="Center">List of Dishes</TextBlock>
+                   HorizontalAlignment="Left"
+                    Margin="40 0 0 0"
+                   Orientation="Horizontal">
+            <TextBlock FontSize="46" Text="Recipe for "></TextBlock>
+            <TextBlock FontSize="46" Name="NameDishTb" Foreground="#fdb249"></TextBlock>
+        </StackPanel>
+        
 
 
         <!--Category-->
         <TextBlock Grid.Row="1"
                    VerticalAlignment="Center"
-                   HorizontalAlignment="Center"
+                   HorizontalAlignment="Right"
                    FontSize="32">Category:</TextBlock>
-        <ComboBox
-            Grid.Column="1"
-            Width="240"
-            Height="50"
-            Grid.Row="1"
-            BorderBrush="Transparent"
-            Background="#d5c847"
-            Foreground="Black"
-            FontSize="22"
-            Name="CategoryCb" SelectionChanged="CategoryCb_SelectionChanged">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Name}"/>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
+        <TextBlock Grid.Row="1"
+                   Grid.Column="1"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Left"
+                   FontSize="32"
+                   Foreground="#fdb249"
+                   Name="CategoryTb"/>
 
+        <!--cookingTime-->
+        <TextBlock Grid.Row="2"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"
+                   FontSize="32">Cooking time:</TextBlock>
+        <TextBlock Grid.Row="2"
+                   Grid.Column="1"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Left"
+                   FontSize="32"
+                   Foreground="#fdb249"
+                   Name="CookingTimeTb"/>
+        
+        <StackPanel Grid.Row="0"
+                   Grid.Column="3" Grid.ColumnSpan="2" Orientation="Horizontal">
+            <TextBlock 
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   FontSize="32">Servings:</TextBlock>
+            <Button Width="40" Height="40" x:Name="minusServingsBt" Content="-" Margin="0,0,10,0" Click="minusServingsBt_Click"/>
+            <TextBox Width="100" Height="40" Name="ServingsTb" Margin="0,0,10,0" TextChanged="ServingsTb_TextChanged"/>
+            <Button Width="40" Height="40" x:Name="plusServingsBt" Content="+" Click="plusServingsBt_Click"/>
 
+        </StackPanel>
         <!--Name-->
         <TextBlock Grid.Row="1"
                    Grid.Column="3"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"
-                   FontSize="32">Name:</TextBlock>
+                   FontSize="32">TotalCost:</TextBlock>
 
-        <TextBox Grid.Column="4"
+        <TextBlock Grid.Column="4"
                  Grid.Row="1"
                  Width="240"
                  FontSize="22"
                  Height="50"
-                 Background="#d5c847"
-                 BorderBrush="Transparent"
-                 Name="NameTb" TextChanged="NameTb_TextChanged">
-        </TextBox>
-
-        <!--Check-->
-        <CheckBox Grid.Row="2"
-                  FontSize="22"
-                  Grid.ColumnSpan="2"
-                  VerticalAlignment="Center"
-                  HorizontalAlignment="Center">Show only dishes with available ingredients</CheckBox>
+                 Name="TotalCostTb"/>
 
 
-        <!--Slider-->
-        <Slider Grid.Column="4"
-                HorizontalAlignment="Center"
-                Grid.Row="2"
-                VerticalAlignment="Center"
-                Width="240" 
-                Value="2"
-                TickFrequency="10"/>
-        
         <!--ListView-->
         <ListView Background="#fed7c1"
                   x:Name="dishesLv"
@@ -96,11 +96,10 @@
                   Grid.Row="3"
                   Grid.RowSpan="5"
                   Margin="10"
-                  BorderBrush="Transparent" SelectionChanged="dishesLv_SelectionChanged">
+                  BorderBrush="Transparent">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <UniformGrid Columns="3"
-                                 />
+                    <UniformGrid Columns="3"/>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
@@ -114,11 +113,15 @@
                                     Height="450"
                                     Background="White"
                                     Cursor="Hand">
-                            <Image Source="{Binding Image}"
+                            <Image 
                                    Margin="0 10 0 0"
                                    Height="200"
-                                   Name="nameDishImg"
-                                   Width="200">
+                                   Name="nameDishImg">
+                                <Image.Source>
+                                    <Binding Path="Images">
+
+                                    </Binding>
+                                </Image.Source>
                             </Image>
                             <TextBlock Text="{Binding Name}"
                                        FontSize="20"

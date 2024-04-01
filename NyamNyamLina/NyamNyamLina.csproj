@@ -130,6 +130,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Recipe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pages\ListofDishes.xaml.cs">
@@ -137,6 +141,9 @@
     </Compile>
     <Compile Include="Pages\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Recipe.xaml.cs">
+      <DependentUpon>Recipe.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -185,6 +192,21 @@
       <DependentUpon>NyamNyamModel.edmx</DependentUpon>
       <LastGenOutput>NyamNyamModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Images\1.jpg" />
+    <Resource Include="Images\10.jpeg" />
+    <Resource Include="Images\11.jpeg" />
+    <Resource Include="Images\12.jpeg" />
+    <Resource Include="Images\13.jpeg" />
+    <Resource Include="Images\14.jpeg" />
+    <Resource Include="Images\15.jpg" />
+    <Resource Include="Images\2.jpeg" />
+    <Resource Include="Images\3.jpg" />
+    <Resource Include="Images\4.jpeg" />
+    <Resource Include="Images\5.jpeg" />
+    <Resource Include="Images\6.jpeg" />
+    <Resource Include="Images\7.jpeg" />
+    <Resource Include="Images\8.jpeg" />
+    <Resource Include="Images\9.jpeg" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

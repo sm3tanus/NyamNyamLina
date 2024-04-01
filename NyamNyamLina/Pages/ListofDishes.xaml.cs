@@ -21,11 +21,28 @@ namespace NyamNyamLina.Pages
     /// </summary>
     public partial class ListofDishes : Page
     {
+        List<Dish> dishes;
         public ListofDishes()
         {
             InitializeComponent();
-            CategoryCb.ItemsSource = DBconnection.Connection.nyamNyam.Category.ToList();
-            dishesLv.ItemsSource = Connection.nyamNyam.Dish.ToList();
+            dishes = Connection.nyamNyam.Dish.ToList();
+            CategoryCb.ItemsSource = Connection.nyamNyam.Category.ToList();
+            dishesLv.ItemsSource = dishes;
+        }
+
+        private void dishesLv_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            App.selectedDish = dishesLv.SelectedItem as Dish;
+            NavigationService.Navigate(new Recipe());
+        }
+        private void CategoryCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            dishesLv.ItemsSource = dishes.Where(i => i.Category == CategoryCb.SelectedItem as Category && i.Name.Contains(NameTb.Text)).ToList();
+        }
+
+        private void NameTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            dishesLv.ItemsSource = dishes.Where(i => i.Name.Contains(NameTb.Text) && i.Category == CategoryCb.SelectedItem as Category).ToList();   
         }
     }
 }
