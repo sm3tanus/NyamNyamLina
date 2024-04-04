@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:NyamNyamLina.Pages"
       mc:Ignorable="d" 
        d:DesignHeight="1080" d:DesignWidth="1280"
-      Title="ListofDishes">
+      Title="Dishes">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -37,6 +37,12 @@
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"
                    FontSize="32">Category:</TextBlock>
+        <TextBlock Grid.Row="2"
+                   Grid.Column="3"
+                   FontSize="25"
+                   Name="Tb"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"></TextBlock>
         <ComboBox
             Grid.Column="1"
             Width="240"
@@ -77,7 +83,9 @@
                   FontSize="22"
                   Grid.ColumnSpan="2"
                   VerticalAlignment="Center"
-                  HorizontalAlignment="Center">Show only dishes with available ingredients</CheckBox>
+                  HorizontalAlignment="Center"
+                  Name="ShowCb" Checked="ShowCb_Checked" 
+                  Unchecked="ShowCb_Checked">Show only dishes with available ingredients</CheckBox>
 
 
         <!--Slider-->
@@ -86,8 +94,9 @@
                 Grid.Row="2"
                 VerticalAlignment="Center"
                 Width="240" 
-                Value="2"
-                TickFrequency="10"/>
+                Name="Slider" ValueChanged="Slider_ValueChanged"
+                TickFrequency="2"
+                />
         
         <!--ListView-->
         <ListView Background="#fed7c1"

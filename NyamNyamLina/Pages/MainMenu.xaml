@@ -36,53 +36,9 @@
 
     <!--Профиль-->
 
-    <Button
-        Width="640"
-        Height="160"
-        FontSize="30"
-        HorizontalContentAlignment="Left"
-       
-        Name="ProfileBt"
-            BorderBrush="Transparent"
-        Background="Transparent"
-        HorizontalAlignment="Left"
-        Grid.ColumnSpan="2"  >
-        <Button.Content>
-            <StackPanel Orientation="Horizontal" Width="610">
-                <Grid Width="610">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="500"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
+   
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-
-                  
-
-                    <TextBlock FontSize="55" 
-                                   Style="{StaticResource CustomFont}"
-                                   Margin="140 0 0 0"
-                                   VerticalAlignment="Center"
-                                   Name="loginTb"></TextBlock>
-                </Grid>
-            </StackPanel>
-        </Button.Content>
-    </Button>
-
-    <Button
-            BorderBrush="Transparent"
-            Width="140"
-            Height="160"
-            Name="ExitBt"
-            Background="Transparent"
-            HorizontalAlignment="Right"
-            Margin="0 0 0 0"
-            Grid.Column="1"
-           >
-
-    </Button>
+  
 
 
     <!--Навигационные кнопки-->
@@ -134,7 +90,7 @@
         
         HorizontalAlignment="Left"
         Grid.Row="2"
-        Grid.ColumnSpan="2" >
+        Grid.ColumnSpan="2" Click="IngredientsBt_Click" >
         <Button.Content>
             <StackPanel Orientation="Horizontal" Width="610">
                 <Grid Width="610">

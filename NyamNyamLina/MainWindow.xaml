@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:NyamNyamLina"
         mc:Ignorable="d"
         Title="Recipes" MinHeight="1080" MinWidth="1920"
-        WindowState="Maximized"
+         MaxHeight="1080" MaxWidth="1920"
         ResizeMode="NoResize">
     <Grid>
         <Frame Name="MainFrame" NavigationUIVisibility="Hidden"></Frame>

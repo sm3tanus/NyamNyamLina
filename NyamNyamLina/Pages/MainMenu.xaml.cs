@@ -23,11 +23,17 @@ namespace NyamNyamLina.Pages
         public MainMenu()
         {
             InitializeComponent();
+            MainMenuFrame.NavigationService.Navigate(new ListofDishes());
         }
 
         private void DishesBt_Click(object sender, RoutedEventArgs e)
         {
             MainMenuFrame.NavigationService.Navigate(new ListofDishes());
+        }
+
+        private void IngredientsBt_Click(object sender, RoutedEventArgs e)
+        {
+            MainMenuFrame.NavigationService.Navigate(new ListOfIngredients());
         }
     }
 }

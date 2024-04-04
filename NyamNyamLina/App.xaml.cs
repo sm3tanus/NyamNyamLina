@@ -15,5 +15,6 @@ namespace NyamNyamLina
     public partial class App : Application
     {
         public static Dish selectedDish;
+        public static Ingredient selectedIngredient;
     }
 }

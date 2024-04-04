@@ -8,6 +8,6 @@ namespace NyamNyamLina.DBconnection
 {
     public class Connection
     {
-        public static NyamNyam_Session_LianaEntities nyamNyam = new NyamNyam_Session_LianaEntities();
+        public static NyamNyamLiana320Entities nyamNyam = new NyamNyamLiana320Entities();
     }
 }

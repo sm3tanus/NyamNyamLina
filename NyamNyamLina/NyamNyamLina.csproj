@@ -73,56 +73,57 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DBconnection\Category.cs">
-      <DependentUpon>NyamNyamModel.tt</DependentUpon>
+      <DependentUpon>ModelNyamNyam.tt</DependentUpon>
     </Compile>
     <Compile Include="DBconnection\Client.cs">
-      <DependentUpon>NyamNyamModel.tt</DependentUpon>
+      <DependentUpon>ModelNyamNyam.tt</DependentUpon>
     </Compile>
     <Compile Include="DBconnection\Connection.cs" />
     <Compile Include="DBconnection\CookingStage.cs">
-      <DependentUpon>NyamNyamModel.tt</DependentUpon>
+      <DependentUpon>ModelNyamNyam.tt</DependentUpon>
     </Compile>
     <Compile Include="DBconnection\Dish.cs">
-      <DependentUpon>NyamNyamModel.tt</DependentUpon>
+      <DependentUpon>ModelNyamNyam.tt</DependentUpon>
     </Compile>
     <Compile Include="DBconnection\Ingredient.cs">
-      <DependentUpon>NyamNyamModel.tt</DependentUpon>
+      <DependentUpon>ModelNyamNyam.tt</DependentUpon>
     </Compile>
     <Compile Include="DBconnection\IngredientOfStage.cs">
-      <DependentUpon>NyamNyamModel.tt</DependentUpon>
+      <DependentUpon>ModelNyamNyam.tt</DependentUpon>
     </Compile>
-    <Compile Include="DBconnection\NyamNyamModel.Context.cs">
+    <Compile Include="DBconnection\ModelNyamNyam.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NyamNyamModel.Context.tt</DependentUpon>
+      <DependentUpon>ModelNyamNyam.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="DBconnection\NyamNyamModel.cs">
+    <Compile Include="DBconnection\ModelNyamNyam.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NyamNyamModel.tt</DependentUpon>
+      <DependentUpon>ModelNyamNyam.tt</DependentUpon>
     </Compile>
-    <Compile Include="DBconnection\NyamNyamModel.Designer.cs">
+    <Compile Include="DBconnection\ModelNyamNyam.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NyamNyamModel.edmx</DependentUpon>
+      <DependentUpon>ModelNyamNyam.edmx</DependentUpon>
     </Compile>
     <Compile Include="DBconnection\Order.cs">
-      <DependentUpon>NyamNyamModel.tt</DependentUpon>
+      <DependentUpon>ModelNyamNyam.tt</DependentUpon>
     </Compile>
     <Compile Include="DBconnection\OrderedDish.cs">
-      <DependentUpon>NyamNyamModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DBconnection\sysdiagrams.cs">
-      <DependentUpon>NyamNyamModel.tt</DependentUpon>
+      <DependentUpon>ModelNyamNyam.tt</DependentUpon>
     </Compile>
     <Compile Include="DBconnection\Unit.cs">
-      <DependentUpon>NyamNyamModel.tt</DependentUpon>
+      <DependentUpon>ModelNyamNyam.tt</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Pages\ListofDishes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ListOfIngredients.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -138,6 +139,9 @@
   <ItemGroup>
     <Compile Include="Pages\ListofDishes.xaml.cs">
       <DependentUpon>ListofDishes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ListOfIngredients.xaml.cs">
+      <DependentUpon>ListOfIngredients.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
@@ -162,16 +166,16 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="DBconnection\NyamNyamModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>NyamNyamModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="DBconnection\NyamNyamModel.edmx.diagram">
-      <DependentUpon>NyamNyamModel.edmx</DependentUpon>
-    </None>
     <Resource Include="Fonts\Comfortaa_Bold.ttf" />
     <Resource Include="Fonts\Comfortaa_Regular.ttf" />
     <Resource Include="Fonts\Comfortaa_Thin.ttf" />
+    <EntityDeploy Include="DBconnection\ModelNyamNyam.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelNyamNyam.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DBconnection\ModelNyamNyam.edmx.diagram">
+      <DependentUpon>ModelNyamNyam.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -182,16 +186,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DBconnection\NyamNyamModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>NyamNyamModel.Context.cs</LastGenOutput>
-      <DependentUpon>NyamNyamModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="DBconnection\NyamNyamModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>NyamNyamModel.edmx</DependentUpon>
-      <LastGenOutput>NyamNyamModel.cs</LastGenOutput>
-    </Content>
     <Resource Include="Images\1.jpg" />
     <Resource Include="Images\10.jpeg" />
     <Resource Include="Images\11.jpeg" />
@@ -210,6 +204,18 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DBconnection\ModelNyamNyam.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModelNyamNyam.Context.cs</LastGenOutput>
+      <DependentUpon>ModelNyamNyam.edmx</DependentUpon>
+    </Content>
+    <Content Include="DBconnection\ModelNyamNyam.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelNyamNyam.edmx</DependentUpon>
+      <LastGenOutput>ModelNyamNyam.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

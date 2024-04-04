@@ -28,7 +28,7 @@ namespace NyamNyamLina.Pages
             CookingStage cooking = Connection.nyamNyam.CookingStage.FirstOrDefault(i=>i.DishId == App.selectedDish.Id);
             NameDishTb.Text = App.selectedDish.Name;
             CategoryTb.Text = App.selectedDish.Category.Name;
-            CookingTimeTb.Text = $"{cooking.TimeInMinutes}m.";
+            CookingTimeTb.Text = $"{cooking.TimeInMinutes} min.";
             ServingsTb.Text = Servings.ToString();
             TotalCostTb.Text = (App.selectedDish.FinalPriceInCents * Servings).ToString();
 
