@@ -3,13 +3,18 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:NyamNyamLina.Pages"
+      xmlns:local="clr-namespace:NyamNyamLina.Pages" 
+xmlns:converters="clr-namespace:NyamNyamLina.Converters"
       mc:Ignorable="d" 
        d:DesignHeight="1080" d:DesignWidth="1280"
       Title="Recipe">
 
     <Grid>
+        <Grid.Resources>
+            <converters:ColorCheckBox x:Key="Color"></converters:ColorCheckBox>
+        </Grid.Resources>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -25,6 +30,8 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Grid.ColumnSpan="5"
                    VerticalAlignment="Center"
@@ -32,125 +39,269 @@
                     Margin="40 0 0 0"
                    Orientation="Horizontal">
             <TextBlock FontSize="46" Text="Recipe for "></TextBlock>
-            <TextBlock FontSize="46" Name="NameDishTb" Foreground="#fdb249"></TextBlock>
+            <TextBlock FontSize="46" Name="NameDishTb" 
+                       Foreground="#fdb249"
+                       FontWeight="Bold"></TextBlock>
         </StackPanel>
-        
+
 
 
         <!--Category-->
         <TextBlock Grid.Row="1"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Right"
-                   FontSize="32">Category:</TextBlock>
+                   FontSize="32"
+                   Margin="0 0 10 0">Category:</TextBlock>
         <TextBlock Grid.Row="1"
                    Grid.Column="1"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Left"
                    FontSize="32"
                    Foreground="#fdb249"
+                   FontWeight="Bold"
                    Name="CategoryTb"/>
 
         <!--cookingTime-->
         <TextBlock Grid.Row="2"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Right"
-                   FontSize="32">Cooking time:</TextBlock>
+                   FontSize="32"
+                   Margin="0 0 10 0">Cooking time:</TextBlock>
         <TextBlock Grid.Row="2"
                    Grid.Column="1"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Left"
                    FontSize="32"
                    Foreground="#fdb249"
+                   FontWeight="Bold"
                    Name="CookingTimeTb"/>
-        
-        <StackPanel Grid.Row="0"
-                   Grid.Column="3" Grid.ColumnSpan="2" Orientation="Horizontal">
+
+        <StackPanel Grid.Row="1"
+                   Grid.Column="4" Grid.ColumnSpan="2" Orientation="Horizontal"
+                    HorizontalAlignment="Center">
             <TextBlock 
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"
-                   FontSize="32">Servings:</TextBlock>
-            <Button Width="40" Height="40" x:Name="minusServingsBt" Content="-" Margin="0,0,10,0" Click="minusServingsBt_Click"/>
-            <TextBox Width="100" Height="40" Name="ServingsTb" Margin="0,0,10,0" TextChanged="ServingsTb_TextChanged"/>
-            <Button Width="40" Height="40" x:Name="plusServingsBt" Content="+" Click="plusServingsBt_Click"/>
+                   FontSize="32"
+                Margin="0 0 30 0">Servings:</TextBlock>
+            <Button Width="40" Height="40" 
+                    x:Name="minusServingsBt"
+                    Content="-" Margin="0,0,10,0" 
+                    Click="minusServingsBt_Click"
+                    Background="#d5c847"
+                    BorderBrush="Transparent"/>
+            <TextBox Width="100" Height="40" 
+                     Name="ServingsTb"
+                     Margin="0,0,10,0"
+                     TextChanged="ServingsTb_TextChanged" 
+                     Background="#fed7c1"
+                     BorderBrush="Transparent"
+                     TextAlignment="Center"
+                     Foreground="#fdb249"
+                     FontWeight="Bold"
+                     FontSize="32"/>
+            <Button Width="40" Height="40" 
+                    x:Name="plusServingsBt" 
+                    Content="+" 
+                    Click="plusServingsBt_Click"
+                    Background="#d5c847"
+                    BorderBrush="Transparent"/>
 
         </StackPanel>
         <!--Name-->
-        <TextBlock Grid.Row="1"
-                   Grid.Column="3"
+        <TextBlock Grid.Row="2"
+                   Grid.Column="4"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"
                    FontSize="32">TotalCost:</TextBlock>
 
-        <TextBlock Grid.Column="4"
-                 Grid.Row="1"
-                 Width="240"
-                 FontSize="22"
+        <TextBlock Grid.Column="5"
+                 Grid.Row="2"
+                 FontSize="32"
                  Height="50"
+                 Foreground="#fdb249"
+                 FontWeight="Bold"
                  Name="TotalCostTb"/>
 
+        <!--Description-->
+        <TextBlock Grid.Row="3"
+                   Grid.ColumnSpan="6"
+                   HorizontalAlignment="Left"
+                   FontSize="14"
+                   Name="DescriptionTb"
+                   Margin="50 0 0 0"
+                   FontStyle="Italic"
+                   TextWrapping="Wrap"></TextBlock>
 
         <!--ListView-->
-        <ListView Background="#fed7c1"
-                  x:Name="dishesLv"
-                  Grid.ColumnSpan="5"
-                  Grid.Row="3"
-                  Grid.RowSpan="5"
+       
+
+        <ListView 
+                  Background="#eed4fe"
+                  x:Name="ingredientsLv"
+                  Grid.ColumnSpan="3"
+                  Grid.Row="4"
+                  Grid.RowSpan="4"
+                  Margin="10"
+                  BorderBrush="Transparent">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="" Width="40">
+                            <GridViewColumn.HeaderContainerStyle>
+                                <Style TargetType="{x:Type GridViewColumnHeader}">
+                                    <Setter Property="Background" Value="#d5c847" />
+                                    <Setter Property="BorderBrush" Value="Transparent"/>
+                                </Style>
+                            </GridViewColumn.HeaderContainerStyle>
+
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox HorizontalAlignment="Center" 
+                            IsChecked="{Binding Availible}"
+                                              Background="{Binding ., Converter={StaticResource Color}}"
+                            />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="Name" Width="200">
+                            <GridViewColumn.HeaderContainerStyle>
+                                <Style TargetType="{x:Type GridViewColumnHeader}">
+                                    <Setter Property="Background" Value="#d5c847" />
+                                    <Setter Property="BorderBrush" Value="Transparent"/>
+                                    <Setter Property="Height" Value="50"/>
+                                    <Setter Property="FontSize" Value="20"/>
+                                </Style>
+                            </GridViewColumn.HeaderContainerStyle>
+
+
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Ingredient.Name}" Foreground="Black"
+                                                  />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+
+
+
+
+                        <GridViewColumn Header="Quantity" Width="150">
+                            <GridViewColumn.HeaderContainerStyle>
+                                <Style TargetType="{x:Type GridViewColumnHeader}">
+                                    <Setter Property="Background" Value="#d5c847" />
+                                    <Setter Property="BorderBrush" Value="Transparent"/>
+                                    <Setter Property="Height" Value="50"/>
+                                    <Setter Property="FontSize" Value="20"/>
+                                </Style>
+                            </GridViewColumn.HeaderContainerStyle>
+
+
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Quantity}"
+                                                   Foreground="Black"
+                                                  />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+
+                        <GridViewColumn Header="Unit" Width="120">
+                            <GridViewColumn.HeaderContainerStyle>
+                                <Style TargetType="{x:Type GridViewColumnHeader}">
+                                    <Setter Property="Background" Value="#d5c847" />
+                                    <Setter Property="BorderBrush" Value="Transparent"/>
+                                    <Setter Property="Height" Value="50"/>
+                                    <Setter Property="FontSize" Value="20"/>
+                                </Style>
+                            </GridViewColumn.HeaderContainerStyle>
+
+
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Ingredient.Unit.Name}"
+                                                   Foreground="Black"
+                                                  />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="Cost" Width="120">
+                            <GridViewColumn.HeaderContainerStyle>
+                                <Style TargetType="{x:Type GridViewColumnHeader}">
+                                    <Setter Property="Background" Value="#d5c847" />
+                                    <Setter Property="BorderBrush" Value="Transparent"/>
+                                    <Setter Property="Height" Value="50"/>
+                                    <Setter Property="FontSize" Value="20"/>
+                                </Style>
+                            </GridViewColumn.HeaderContainerStyle>
+
+
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Ingredient.CostInDollars}"
+                                                   Foreground="Black"
+                                                  />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        
+        
+        
+        
+        
+        
+        
+        
+        <!--new-->
+        <ListView Background="#eed4fe"
+                  x:Name="processLv"
+                  Grid.ColumnSpan="3"
+                  Grid.Column="3"
+                  Grid.Row="4"
+                  Grid.RowSpan="4"
                   Margin="10"
                   BorderBrush="Transparent">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <UniformGrid Columns="3"/>
+                    <UniformGrid Columns="1"
+                                
+                                 />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
-                <DataTemplate >
-                    <Border BorderBrush="#d5c847"
+                <DataTemplate>
+                    <Border BorderBrush="Transparent"
                             BorderThickness="5"
-                            CornerRadius="0">
-                        <StackPanel Orientation="Vertical" 
-                                    HorizontalAlignment="Center"
-                                    Width="280"
-                                    Height="450"
-                                    Background="White"
-                                    Cursor="Hand">
-                            <Image 
-                                   Margin="0 10 0 0"
-                                   Height="200"
-                                   Name="nameDishImg">
-                                <Image.Source>
-                                    <Binding Path="Images">
-
-                                    </Binding>
-                                </Image.Source>
-                            </Image>
-                            <TextBlock Text="{Binding Name}"
-                                       FontSize="20"
-                                       Margin="0 10 0 10 "
-                                       TextWrapping="Wrap"
-                                       TextAlignment="Center"
-                                       HorizontalAlignment="Center"
-                                       Foreground="#fdb249"
-                                       FontWeight="Bold"/>
-                            <StackPanel Orientation="Horizontal"
-                                        HorizontalAlignment="Center">
-                                <TextBlock Text="1 portion = "
-                                           FontWeight="DemiBold"
-                                           FontSize="20"></TextBlock>
-                                <TextBlock Text="{Binding FinalPriceInCents}"
-                                       TextWrapping="Wrap"
-                                       HorizontalAlignment="Center"
-                                       Foreground="#fdb249"
-                                       FontWeight="DemiBold"
-                                       FontSize="20"/>
-                                <TextBlock Text="$"
-                                           FontWeight="DemiBold"
-                                           FontSize="20"
-                                           Foreground="#fdb249"></TextBlock>
-                            </StackPanel>
+                            CornerRadius="0"
+                            Background="Transparent">
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Left">
+                            <TextBlock Text="● "
+                                       Foreground="Black"></TextBlock>
+                            <TextBlock Text="{Binding ProcessDescription}"
+                                       Foreground="Black"></TextBlock>
                         </StackPanel>
+
                     </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
     </Grid>
 </Page>

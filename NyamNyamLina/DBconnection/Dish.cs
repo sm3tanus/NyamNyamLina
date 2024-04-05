@@ -28,7 +28,7 @@ namespace NyamNyamLina.DBconnection
         public string Image { get; set; }
         public string RecipeLink { get; set; }
         public string Description { get; set; }
-        public int FinalPriceInCents { get; set; }
+        public double FinalPriceInDollars { get; set; }
     
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace NyamNyamLina.Pages
 {
@@ -26,31 +27,64 @@ namespace NyamNyamLina.Pages
         {
             InitializeComponent();
             dishes = Connection.nyamNyam.Dish.ToList();
+
             
             CategoryCb.ItemsSource = Connection.nyamNyam.Category.ToList();
             dishesLv.ItemsSource = dishes;
-            double max = dishes[0].FinalPriceInCents;
-            double min = dishes[0].FinalPriceInCents;
+            double max = dishes[0].FinalPriceInDollars;
+            double min = dishes[0].FinalPriceInDollars;
             CategoryCb.SelectedItem = Connection.nyamNyam.Category.ToList().Last();
             
             foreach (Dish dish in dishes)
             {
-                if (dish.FinalPriceInCents > max)
+                if (dish.FinalPriceInDollars > max)
                 {
-                    max = dish.FinalPriceInCents;
+                    max = dish.FinalPriceInDollars;
                 }
-                if (dish.FinalPriceInCents < min)
+                if (dish.FinalPriceInDollars < min)
                 {
-                    min = dish.FinalPriceInCents;
+                    min = dish.FinalPriceInDollars;
                 }
             }
             Slider.Maximum = max;
             Slider.Minimum = min;
             Slider.Value = max;
-            if (CategoryCb.SelectedItem == Connection.nyamNyam.Category.ToList().Last())
-                dishesLv.ItemsSource = dishes.Where(i => i.Name.Contains(NameTb.Text) && i.FinalPriceInCents <= Slider.Value).ToList();
 
-            
+
+            Filter();
+
+
+
+            List<Dish> filter = Connection.nyamNyam.Dish.Where(i =>
+                i.CookingStage.All(stage =>
+                    stage.IngredientOfStage.All(ingredient =>
+                         ingredient.Availible == false))).ToList();
+            List<string> urls = new List<string>();
+            foreach (Dish dish in filter)
+            {
+                urls.Add(dish.Image);
+            }
+            foreach (string url in urls)
+            {
+                BitmapImage originalImage = new BitmapImage(new Uri(url));
+                urls.Remove(url);
+                BitmapSource blackAndWhiteImage = ConvertToBlackAndWhite(originalImage);
+                urls.Add(blackAndWhiteImage.ToString());
+            }
+
+
+
+        }
+
+        private BitmapSource ConvertToBlackAndWhite(BitmapImage originalImage)
+        {
+            FormatConvertedBitmap grayscaleBitmap = new FormatConvertedBitmap();
+            grayscaleBitmap.BeginInit();
+            grayscaleBitmap.Source = originalImage;
+            grayscaleBitmap.DestinationFormat = PixelFormats.Gray8;
+            grayscaleBitmap.EndInit();
+
+            return grayscaleBitmap;
         }
 
         private void dishesLv_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -60,57 +94,42 @@ namespace NyamNyamLina.Pages
         }
         private void CategoryCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (CategoryCb.SelectedItem != Connection.nyamNyam.Category.ToList().Last() && ShowCb.IsChecked == false)
-                dishesLv.ItemsSource = dishes.Where(i => i.Name.Contains(NameTb.Text) && i.FinalPriceInCents <= Slider.Value && i.Category == CategoryCb.SelectedItem as Category).ToList();
-            else
-                dishesLv.ItemsSource = dishes.Where(i => i.Name.Contains(NameTb.Text) && i.FinalPriceInCents <= Slider.Value).ToList();
+            Filter();
         }
 
         private void NameTb_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (CategoryCb.SelectedItem != Connection.nyamNyam.Category.ToList().Last() && ShowCb.IsChecked == false)
-                dishesLv.ItemsSource = dishes.Where(i => i.Name.Contains(NameTb.Text) && i.FinalPriceInCents <= Slider.Value && i.Category == CategoryCb.SelectedItem as Category).ToList();
-            else if(CategoryCb.SelectedItem != Connection.nyamNyam.Category.ToList().Last() && ShowCb.IsChecked == true)
-            {
-                dishesLv.ItemsSource = dishes.Where(i =>
-                i.CookingStage.All(stage =>
-                    stage.IngredientOfStage.All(ingredient =>
-                         ingredient.Availible == true)) && i.Name.Contains(NameTb.Text) && i.FinalPriceInCents <= Slider.Value && i.Category == CategoryCb.SelectedItem as Category).ToList();
-            }
-            else
-                dishesLv.ItemsSource = dishes.Where(i => i.Name.Contains(NameTb.Text) && i.FinalPriceInCents <= Slider.Value).ToList();
+            Filter();
         }
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             Tb.Text = Convert.ToInt32(Slider.Value).ToString();
-            if (CategoryCb.SelectedItem != Connection.nyamNyam.Category.ToList().Last() && ShowCb.IsChecked == false)
-                dishesLv.ItemsSource = dishes.Where(i => i.Name.Contains(NameTb.Text) && i.FinalPriceInCents <= Slider.Value && i.Category == CategoryCb.SelectedItem as Category).ToList();
-            else if (CategoryCb.SelectedItem != Connection.nyamNyam.Category.ToList().Last() && ShowCb.IsChecked == true)
-            {
-                dishesLv.ItemsSource = dishes.Where(i =>
-                i.CookingStage.All(stage =>
-                    stage.IngredientOfStage.All(ingredient =>
-                         ingredient.Availible == true)) && i.Name.Contains(NameTb.Text) && i.FinalPriceInCents <= Slider.Value && i.Category == CategoryCb.SelectedItem as Category).ToList();
-            }
-            else
-                dishesLv.ItemsSource = dishes.Where(i => i.Name.Contains(NameTb.Text) && i.FinalPriceInCents <= Slider.Value).ToList();
+            Filter();
         }
 
         private void ShowCb_Checked(object sender, RoutedEventArgs e)
         {
             dishes = Connection.nyamNyam.Dish.ToList();
+            Filter();
+        }
+        private void Filter()
+        {
             if (CategoryCb.SelectedItem != Connection.nyamNyam.Category.ToList().Last() && ShowCb.IsChecked == false)
-                dishesLv.ItemsSource = dishes.Where(i => i.Name.Contains(NameTb.Text) && i.FinalPriceInCents <= Slider.Value && i.Category == CategoryCb.SelectedItem as Category).ToList();
+                dishesLv.ItemsSource = dishes.Where(i => i.Name.Contains(NameTb.Text) && i.FinalPriceInDollars <= Slider.Value && i.Category == CategoryCb.SelectedItem as Category).ToList();
             else if (CategoryCb.SelectedItem != Connection.nyamNyam.Category.ToList().Last() && ShowCb.IsChecked == true)
             {
                 dishesLv.ItemsSource = dishes.Where(i =>
                 i.CookingStage.All(stage =>
                     stage.IngredientOfStage.All(ingredient =>
-                         ingredient.Availible == true)) && i.Name.Contains(NameTb.Text) && i.FinalPriceInCents <= Slider.Value && i.Category == CategoryCb.SelectedItem as Category).ToList();
+                         ingredient.Availible == true)) && i.Name.Contains(NameTb.Text) && i.FinalPriceInDollars <= Slider.Value && i.Category == CategoryCb.SelectedItem as Category).ToList();
             }
+            else if (CategoryCb.SelectedItem == Connection.nyamNyam.Category.ToList().Last() && ShowCb.IsChecked == true)
+                dishesLv.ItemsSource = dishes.Where(i => i.CookingStage.All(stage =>
+                    stage.IngredientOfStage.All(ingredient =>
+                         ingredient.Availible == true)) && i.Name.Contains(NameTb.Text) && i.FinalPriceInDollars <= Slider.Value).ToList();
             else
-                dishesLv.ItemsSource = dishes.Where(i => i.Name.Contains(NameTb.Text) && i.FinalPriceInCents <= Slider.Value).ToList();
+                dishesLv.ItemsSource = dishes.Where(i => i.Name.Contains(NameTb.Text) && i.FinalPriceInDollars <= Slider.Value).ToList();
         }
     }
 }

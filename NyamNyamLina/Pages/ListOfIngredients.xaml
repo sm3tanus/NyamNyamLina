@@ -87,7 +87,7 @@
                                         <TextBlock Text="Price: "
                                            FontWeight="DemiBold"
                                            FontSize="20"></TextBlock>
-                                        <TextBlock Text="{Binding CostInCents}"
+                                        <TextBlock Text="{Binding CostInDollars}"
                                        TextWrapping="Wrap"
                                        HorizontalAlignment="Left"
                                        FontWeight="DemiBold"
