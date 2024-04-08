@@ -21,14 +21,19 @@ namespace NyamNyamLina.Pages
     /// </summary>
     public partial class Recipe : Page
     {
-        int Servings = 1;
+        int Servings = App.selectedDish.BaseServingsQuantity;
         public Recipe()
         {
             InitializeComponent();
-            CookingStage cooking = Connection.nyamNyam.CookingStage.FirstOrDefault(i => i.DishId == App.selectedDish.Id);
+            List<CookingStage> cooking = Connection.nyamNyam.CookingStage.Where(i => i.DishId == App.selectedDish.Id).ToList();
             NameDishTb.Text = App.selectedDish.Name;
             CategoryTb.Text = App.selectedDish.Category.Name;
-            CookingTimeTb.Text = $"{cooking.TimeInMinutes}m.";
+            int? cookingTime = 0;
+            foreach (CookingStage stage in cooking)
+            {
+                cookingTime += stage.TimeInMinutes;
+            }
+            CookingTimeTb.Text = $"{cookingTime}m.";
             ServingsTb.Text = Servings.ToString();
             TotalCostTb.Text = (App.selectedDish.FinalPriceInDollars * Servings).ToString();
             DescriptionTb.Text = App.selectedDish.Description;

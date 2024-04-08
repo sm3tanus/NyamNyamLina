@@ -15,8 +15,8 @@ namespace NyamNyamLina.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             IngredientOfStage ingredient = (IngredientOfStage)value;
-            Color greenColor = Colors.Green;
-            Color redColor = Colors.Red;
+            string greenColor = "Green";
+            string redColor = "Red";
             return (bool)ingredient.Availible ? greenColor : redColor;
         }
 

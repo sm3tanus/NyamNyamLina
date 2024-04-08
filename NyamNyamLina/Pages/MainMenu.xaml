@@ -27,23 +27,24 @@
     </Grid.ColumnDefinitions>
 
 
-        <Frame Name="MainMenuFrame" Grid.Column="2" Background="#fed7c1" Grid.ColumnSpan="4" Grid.RowSpan="7"></Frame>
+    <Frame Name="MainMenuFrame" Grid.Column="2" Background="#fed7c1" Grid.ColumnSpan="4" Grid.RowSpan="7"></Frame>
 
     <!--Прямоугольники-->
 
-    <Rectangle Fill="#fdb249" Width="645" Height="1080" HorizontalAlignment="Left" Grid.RowSpan="7" Grid.ColumnSpan="2"/>
-    <Rectangle Fill="#fdb249" Width="645" Height="145" HorizontalAlignment="Left" Grid.RowSpan="7" Grid.ColumnSpan="2" VerticalAlignment="Top"/>
-
-    <!--Профиль-->
-
-   
-
-  
-
+    <Rectangle Fill="#fdb249"
+               Width="645"
+               Height="1080" 
+               HorizontalAlignment="Left" Grid.RowSpan="7" Grid.ColumnSpan="2"/>
+        <Rectangle Fill="#fdb249"
+               Width="645"
+               Height="145"
+               HorizontalAlignment="Left" 
+               Grid.RowSpan="7"
+               Grid.ColumnSpan="2"
+               VerticalAlignment="Top"/>
 
     <!--Навигационные кнопки-->
 
-    <!--My Day-->
     <Button
         Width="640"
         Height="150"
@@ -69,9 +70,17 @@
                     </Grid.RowDefinitions>
 
 
-                    <TextBlock FontSize="40" Style="{StaticResource CustomFont}" Margin="100 0 0 0" VerticalAlignment="Center">Dishes</TextBlock>
+                    <TextBlock FontSize="40" 
+                               Style="{StaticResource CustomFont}" 
+                               Margin="100 0 0 0" 
+                               VerticalAlignment="Center">Dishes</TextBlock>
 
-                    <TextBlock Name="DishesTb" FontSize="40" Grid.Column="1" Style="{StaticResource CustomFont}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 35 0"/>
+                    <TextBlock Name="DishesTb" 
+                               FontSize="40" Grid.Column="1" 
+                               Style="{StaticResource CustomFont}"
+                               HorizontalAlignment="Right" 
+                               VerticalAlignment="Center" 
+                               Margin="0 0 35 0"/>
                 </Grid>
             </StackPanel>
         </Button.Content>
@@ -129,9 +138,9 @@
         Background="Transparent"
         HorizontalAlignment="Left"
         Grid.Row="3"
-        Name="OrderBt"
+        Name="AddBt"
         BorderBrush="Transparent"
-        Grid.ColumnSpan="2">
+        Grid.ColumnSpan="2" Click="AddBt_Click">
         <Button.Content>
             <StackPanel Orientation="Horizontal" Width="610">
                 <Grid Width="610">
@@ -145,7 +154,7 @@
                     </Grid.RowDefinitions>
 
 
-                    <TextBlock FontSize="40" Style="{StaticResource CustomFont}" Margin="100 0 0 0" VerticalAlignment="Center">Orders</TextBlock>
+                        <TextBlock FontSize="40" Style="{StaticResource CustomFont}" Margin="100 0 0 0" VerticalAlignment="Center">Add</TextBlock>
                 </Grid>
             </StackPanel>
         </Button.Content>

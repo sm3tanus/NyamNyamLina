@@ -22,13 +22,11 @@ namespace NyamNyamLina.Pages
     /// </summary>
     public partial class ListofDishes : Page
     {
-        List<Dish> dishes;
+        List<Dish> dishes = Connection.nyamNyam.Dish.ToList();
+
         public ListofDishes()
         {
             InitializeComponent();
-            dishes = Connection.nyamNyam.Dish.ToList();
-
-            
             CategoryCb.ItemsSource = Connection.nyamNyam.Category.ToList();
             dishesLv.ItemsSource = dishes;
             double max = dishes[0].FinalPriceInDollars;
@@ -52,41 +50,25 @@ namespace NyamNyamLina.Pages
 
 
             Filter();
-
-
-
-            List<Dish> filter = Connection.nyamNyam.Dish.Where(i =>
+        }
+        private void Filter()
+        {
+            if (CategoryCb.SelectedItem != Connection.nyamNyam.Category.ToList().Last() && ShowCb.IsChecked == false)
+                dishesLv.ItemsSource = dishes.Where(i => i.Name.Contains(NameTb.Text) && i.FinalPriceInDollars <= Slider.Value && i.Category == CategoryCb.SelectedItem as Category).ToList();
+            else if (CategoryCb.SelectedItem != Connection.nyamNyam.Category.ToList().Last() && ShowCb.IsChecked == true)
+            {
+                dishesLv.ItemsSource = dishes.Where(i =>
                 i.CookingStage.All(stage =>
                     stage.IngredientOfStage.All(ingredient =>
-                         ingredient.Availible == false))).ToList();
-            List<string> urls = new List<string>();
-            foreach (Dish dish in filter)
-            {
-                urls.Add(dish.Image);
+                         ingredient.Availible == true)) && i.Name.Contains(NameTb.Text) && i.FinalPriceInDollars <= Slider.Value && i.Category == CategoryCb.SelectedItem as Category).ToList();
             }
-            foreach (string url in urls)
-            {
-                BitmapImage originalImage = new BitmapImage(new Uri(url));
-                urls.Remove(url);
-                BitmapSource blackAndWhiteImage = ConvertToBlackAndWhite(originalImage);
-                urls.Add(blackAndWhiteImage.ToString());
-            }
-
-
-
+            else if (CategoryCb.SelectedItem == Connection.nyamNyam.Category.ToList().Last() && ShowCb.IsChecked == true)
+                dishesLv.ItemsSource = dishes.Where(i => i.CookingStage.All(stage =>
+                    stage.IngredientOfStage.All(ingredient =>
+                         ingredient.Availible == true)) && i.Name.Contains(NameTb.Text) && i.FinalPriceInDollars <= Slider.Value).ToList();
+            else
+                dishesLv.ItemsSource = dishes.Where(i => i.Name.Contains(NameTb.Text) && i.FinalPriceInDollars <= Slider.Value).ToList();
         }
-
-        private BitmapSource ConvertToBlackAndWhite(BitmapImage originalImage)
-        {
-            FormatConvertedBitmap grayscaleBitmap = new FormatConvertedBitmap();
-            grayscaleBitmap.BeginInit();
-            grayscaleBitmap.Source = originalImage;
-            grayscaleBitmap.DestinationFormat = PixelFormats.Gray8;
-            grayscaleBitmap.EndInit();
-
-            return grayscaleBitmap;
-        }
-
         private void dishesLv_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             App.selectedDish = dishesLv.SelectedItem as Dish;
@@ -113,23 +95,6 @@ namespace NyamNyamLina.Pages
             dishes = Connection.nyamNyam.Dish.ToList();
             Filter();
         }
-        private void Filter()
-        {
-            if (CategoryCb.SelectedItem != Connection.nyamNyam.Category.ToList().Last() && ShowCb.IsChecked == false)
-                dishesLv.ItemsSource = dishes.Where(i => i.Name.Contains(NameTb.Text) && i.FinalPriceInDollars <= Slider.Value && i.Category == CategoryCb.SelectedItem as Category).ToList();
-            else if (CategoryCb.SelectedItem != Connection.nyamNyam.Category.ToList().Last() && ShowCb.IsChecked == true)
-            {
-                dishesLv.ItemsSource = dishes.Where(i =>
-                i.CookingStage.All(stage =>
-                    stage.IngredientOfStage.All(ingredient =>
-                         ingredient.Availible == true)) && i.Name.Contains(NameTb.Text) && i.FinalPriceInDollars <= Slider.Value && i.Category == CategoryCb.SelectedItem as Category).ToList();
-            }
-            else if (CategoryCb.SelectedItem == Connection.nyamNyam.Category.ToList().Last() && ShowCb.IsChecked == true)
-                dishesLv.ItemsSource = dishes.Where(i => i.CookingStage.All(stage =>
-                    stage.IngredientOfStage.All(ingredient =>
-                         ingredient.Availible == true)) && i.Name.Contains(NameTb.Text) && i.FinalPriceInDollars <= Slider.Value).ToList();
-            else
-                dishesLv.ItemsSource = dishes.Where(i => i.Name.Contains(NameTb.Text) && i.FinalPriceInDollars <= Slider.Value).ToList();
-        }
+        
     }
 }

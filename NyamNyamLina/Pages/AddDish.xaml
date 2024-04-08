@@ -1,0 +1,187 @@
+﻿<Page x:Class="NyamNyamLina.Pages.AddDish"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NyamNyamLina.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1280"
+      Title="AddDish">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.ColumnSpan="2"
+           FontSize="76"
+           VerticalAlignment="Center"
+           HorizontalAlignment="Center">Add Dish</TextBlock>
+
+
+        <!--Category-->
+        <TextBlock Grid.Row="2"
+           VerticalAlignment="Center"
+           HorizontalAlignment="Center"
+           FontSize="32">Category:</TextBlock>
+        <TextBlock Grid.Row="2"
+           Grid.Column="3"
+           FontSize="25"
+           Name="Tb"
+           VerticalAlignment="Center"
+           HorizontalAlignment="Center"></TextBlock>
+        <ComboBox
+    Grid.Column="1"
+    Width="240"
+    Height="50"
+    Grid.Row="2"
+    BorderBrush="Transparent"
+    Background="#d5c847"
+    Foreground="Black"
+    FontSize="22"
+    Name="CategoryCb">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+
+        <!--Name-->
+        <TextBlock Grid.Row="1"
+           Grid.Column="0"
+           VerticalAlignment="Center"
+           HorizontalAlignment="Center"
+           FontSize="32">Name:</TextBlock>
+
+
+        <TextBox Grid.Column="1"
+                 Grid.Row="1"
+                 Width="240"
+                 FontSize="22"
+                 Height="50"
+                 Background="#d5c847"
+                 BorderBrush="Transparent"
+                 Name="NameTb">
+        </TextBox>
+
+        <!--Quantity-->
+        <TextBlock Grid.Row="1"
+    Grid.Column="3"
+    VerticalAlignment="Center"
+    HorizontalAlignment="Center"
+    FontSize="32">Base quantity:</TextBlock>
+
+
+        <TextBox Grid.Column="4"
+          Grid.Row="1"
+          Width="240"
+          FontSize="22"
+          Height="50"
+          Background="#d5c847"
+          BorderBrush="Transparent"
+          Name="quantityTb">
+        </TextBox>
+
+        <!--Image link-->
+        <TextBlock Grid.Row="2"
+Grid.Column="3"
+VerticalAlignment="Center"
+HorizontalAlignment="Center"
+FontSize="32">Image link:</TextBlock>
+
+
+        <TextBox Grid.Column="4"
+      Grid.Row="2"
+      Width="240"
+      FontSize="22"
+      Height="50"
+      Background="#d5c847"
+      BorderBrush="Transparent"
+      Name="imageLinkTb">
+        </TextBox>
+
+        <!--Recipe-->
+        <TextBlock Grid.Row="3"
+    Grid.Column="0"
+    VerticalAlignment="Center"
+    HorizontalAlignment="Center"
+    FontSize="32">Recipe link:</TextBlock>
+
+
+        <TextBox Grid.Column="1"
+          Grid.Row="3"
+          Width="240"
+          FontSize="22"
+          Height="50"
+          Background="#d5c847"
+          BorderBrush="Transparent"
+          Name="recipeTb">
+        </TextBox>
+
+        <!--Price-->
+        <TextBlock Grid.Row="3"
+        Grid.Column="3"
+        VerticalAlignment="Center"
+        HorizontalAlignment="Center"
+        FontSize="32">Price in dollars:</TextBlock>
+
+
+        <TextBox Grid.Column="4"
+      Grid.Row="3"
+      Width="240"
+      FontSize="22"
+      Height="50"
+      Background="#d5c847"
+      BorderBrush="Transparent"
+      Name="priceTb">
+        </TextBox>
+        
+        <!--Description-->
+        <TextBlock Grid.Row="4"
+      Grid.Column="0"
+      VerticalAlignment="Center"
+      HorizontalAlignment="Center"
+      FontSize="32">Description:</TextBlock>
+
+
+        <TextBox Grid.Column="1"
+                 Grid.ColumnSpan="3"
+                Grid.Row="4"
+                Grid.RowSpan="3"
+                Width="640"
+                FontSize="22"
+                Height="300"
+                TextWrapping="Wrap"
+                Background="#d5c847"
+                BorderBrush="Transparent"
+                Name="descriptionTb">
+        </TextBox>
+        
+        <!--Save-->
+
+        <Button Grid.Column="4"
+                Grid.Row="6"
+                Height="50"
+                FontSize="22"
+                Width="100"
+                BorderBrush="Transparent"
+                Background="#eed4fe"
+                Name="SaveBt" Click="SaveBt_Click">Save</Button>
+    </Grid>
+</Page>

@@ -75,23 +75,38 @@
     <Compile Include="Converters\ColorCheckBox.cs" />
     <Compile Include="Converters\ColorConverter.cs" />
     <Compile Include="DBconnection\Category.cs">
-      <DependentUpon>ModelNyamNyam.tt</DependentUpon>
+      <DependentUpon>ModelHome.tt</DependentUpon>
     </Compile>
     <Compile Include="DBconnection\Client.cs">
-      <DependentUpon>ModelNyamNyam.tt</DependentUpon>
+      <DependentUpon>ModelHome.tt</DependentUpon>
     </Compile>
     <Compile Include="DBconnection\Connection.cs" />
     <Compile Include="DBconnection\CookingStage.cs">
-      <DependentUpon>ModelNyamNyam.tt</DependentUpon>
+      <DependentUpon>ModelHome.tt</DependentUpon>
     </Compile>
     <Compile Include="DBconnection\Dish.cs">
-      <DependentUpon>ModelNyamNyam.tt</DependentUpon>
+      <DependentUpon>ModelHome.tt</DependentUpon>
     </Compile>
     <Compile Include="DBconnection\Ingredient.cs">
-      <DependentUpon>ModelNyamNyam.tt</DependentUpon>
+      <DependentUpon>ModelHome.tt</DependentUpon>
     </Compile>
     <Compile Include="DBconnection\IngredientOfStage.cs">
-      <DependentUpon>ModelNyamNyam.tt</DependentUpon>
+      <DependentUpon>ModelHome.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBconnection\ModelHome.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelHome.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBconnection\ModelHome.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelHome.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBconnection\ModelHome.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelHome.edmx</DependentUpon>
     </Compile>
     <Compile Include="DBconnection\ModelNyamNyam.Context.cs">
       <AutoGen>True</AutoGen>
@@ -109,18 +124,29 @@
       <DependentUpon>ModelNyamNyam.edmx</DependentUpon>
     </Compile>
     <Compile Include="DBconnection\Order.cs">
-      <DependentUpon>ModelNyamNyam.tt</DependentUpon>
+      <DependentUpon>ModelHome.tt</DependentUpon>
     </Compile>
     <Compile Include="DBconnection\OrderedDish.cs">
-      <DependentUpon>ModelNyamNyam.tt</DependentUpon>
+      <DependentUpon>ModelHome.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBconnection\sysdiagrams.cs">
+      <DependentUpon>ModelHome.tt</DependentUpon>
     </Compile>
     <Compile Include="DBconnection\Unit.cs">
-      <DependentUpon>ModelNyamNyam.tt</DependentUpon>
+      <DependentUpon>ModelHome.tt</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\AddDish.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AddRecipe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\ListofDishes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -139,6 +165,12 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\AddDish.xaml.cs">
+      <DependentUpon>AddDish.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AddRecipe.xaml.cs">
+      <DependentUpon>AddRecipe.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ListofDishes.xaml.cs">
       <DependentUpon>ListofDishes.xaml</DependentUpon>
     </Compile>
@@ -175,6 +207,13 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModelNyamNyam.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <EntityDeploy Include="DBconnection\ModelHome.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelHome.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DBconnection\ModelHome.edmx.diagram">
+      <DependentUpon>ModelHome.edmx</DependentUpon>
+    </None>
     <None Include="DBconnection\ModelNyamNyam.edmx.diagram">
       <DependentUpon>ModelNyamNyam.edmx</DependentUpon>
     </None>
@@ -208,6 +247,16 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DBconnection\ModelHome.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelHome.edmx</DependentUpon>
+      <LastGenOutput>ModelHome.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DBconnection\ModelHome.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelHome.edmx</DependentUpon>
+      <LastGenOutput>ModelHome.cs</LastGenOutput>
+    </Content>
     <Content Include="DBconnection\ModelNyamNyam.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ModelNyamNyam.Context.cs</LastGenOutput>

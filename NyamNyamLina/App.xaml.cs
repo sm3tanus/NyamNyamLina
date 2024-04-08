@@ -16,5 +16,6 @@ namespace NyamNyamLina
     {
         public static Dish selectedDish;
         public static Ingredient selectedIngredient;
+        public static Dish createDish = new Dish();
     }
 }
