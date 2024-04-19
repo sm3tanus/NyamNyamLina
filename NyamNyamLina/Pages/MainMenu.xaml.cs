@@ -36,9 +36,5 @@ namespace NyamNyamLina.Pages
             MainMenuFrame.NavigationService.Navigate(new ListOfIngredients());
         }
 
-        private void AddBt_Click(object sender, RoutedEventArgs e)
-        {
-            MainMenuFrame.NavigationService.Navigate(new AddDish());
-        }
     }
 }

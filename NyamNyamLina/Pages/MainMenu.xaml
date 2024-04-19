@@ -129,36 +129,7 @@
 
 
 
-    <!--My groups-->
-    <Button
-        Width="640"
-        Height="150"
-        FontSize="30"
-        HorizontalContentAlignment="Left"
-        Background="Transparent"
-        HorizontalAlignment="Left"
-        Grid.Row="3"
-        Name="AddBt"
-        BorderBrush="Transparent"
-        Grid.ColumnSpan="2" Click="AddBt_Click">
-        <Button.Content>
-            <StackPanel Orientation="Horizontal" Width="610">
-                <Grid Width="610">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="500"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-
-
-                        <TextBlock FontSize="40" Style="{StaticResource CustomFont}" Margin="100 0 0 0" VerticalAlignment="Center">Add</TextBlock>
-                </Grid>
-            </StackPanel>
-        </Button.Content>
-    </Button>
+   
 
 
 

@@ -42,7 +42,7 @@ namespace NyamNyamLina.Pages
             {
                 App.selectedIngredient.AvailableCount++;
                 Connection.nyamNyam.SaveChanges();
-                ingredientsLv.Items.Refresh();
+                NavigationService.Navigate(new ListOfIngredients());
             }
             catch {
                 MessageBox.Show("Choise ingredient");
@@ -55,7 +55,7 @@ namespace NyamNyamLina.Pages
             {
                 App.selectedIngredient.AvailableCount--;
                 Connection.nyamNyam.SaveChanges();
-                ingredientsLv.Items.Refresh();
+                NavigationService.Navigate(new ListOfIngredients());
             }
             catch
             {
